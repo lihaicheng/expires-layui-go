@@ -1,0 +1,21 @@
+# yaml 配置
+version: "3.7"
+services:
+  mysql-expires:
+    container_name: "mysql-expires"
+    image: "mysql:8.0.21"
+    ports:
+      - "33005:3306"
+    command: "--defaults-file=/etc/mysql/my.cnf --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=expires
+      - MYSQL_PASSWORD=123456
+      - MYSQL_USER=expires
+    volumes:
+      - ~/workspace/study/expires-layui-go-env/mysql/log:/var/log/mysql
+      - ~/workspace/study/expires-layui-go-env/mysql/data:/var/lib/mysql
+      - ~/workspace/study/expires-layui-go-env/mysql/mysql-files:/var/lib/mysql-files
+      - ~/workspace/study/expires-layui-go-env/mysql/conf/my.cnf:/etc/mysql/my.cnf
+    privileged: true
